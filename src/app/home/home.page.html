@@ -1,0 +1,41 @@
+
+<ion-content [fullscreen]="true">
+  <ion-header>
+      <ion-title size="large" class="title" *ngIf="!loading">Bienvenido {{user.userName}}</ion-title>
+  </ion-header>
+  <ion-button color="primary" (click)="generarQR()" shape="round"
+  expand="full"
+  size="medium"
+  fill="outline" *ngIf="!loading">
+    Generar Código QR
+  </ion-button>
+
+  <div id="container" *ngIf="!loading">
+        <ngx-qrcode 
+        [elementType]="elementType" 
+        [value]="value"
+        cssClass="qr"
+        [errorCorrectionLevel]="errorCorrectionLevel" style="height: 1500px;">
+      </ngx-qrcode>
+  </div>
+  <div id="container" *ngIf="loading">
+    <ion-spinner color="tertiary"></ion-spinner>
+  </div>
+  <div *ngIf="!loading">
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    </ion-fab>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button>
+        <ion-icon name="chevron-up-circle"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button (click)="logOut()" routerLink="/login">
+          <ion-icon name="exit"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button routerLink="/attendance-list">
+          <ion-icon name="list"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
+</ion-content>
